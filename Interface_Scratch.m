@@ -4,7 +4,7 @@ function Interface_Scratch(V,rm,rp,rd,rho,tf)
 % Inputs: V (compartment size, defined as m in the paper), rm (motility
 % rate), rp (proliferation rate), rd (death rate), rho (movement bias,
 % shown in SI; rho=0 retrieves standard scratch assay shown in Section
-% 3.2), tf (final dimensional time)
+% 3.2), tf (final dimensionless time)
 
 n=240; %lattice nodes in x-direction
 m=24; %lattice nodes in y-direction
@@ -15,12 +15,12 @@ P2=rp; %proliferation rate
 P3=rd; %death rate
 step = 1; %how far do daughter cells go
 alpha = 1/V; %probability of proliferation/migration ending up in neighbour voxel
-Tend=tf; %dimensional time
+Tend=tf/(P2-P3); %final time as a dimensional quantity
 
 Y=100; %number of realisations
 
 CC=zeros(m,n);
-CC(:,51:70)=1; % Initial condition of scratch assay
+CC(:,111:130)=1; % Initial condition of scratch assay
 
 Q0=sum(sum(CC));
 
